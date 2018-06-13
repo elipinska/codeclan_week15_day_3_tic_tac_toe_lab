@@ -1,0 +1,22 @@
+.game-container {
+  width: 95vw;
+  height: 95vh;
+}
+
+
+.grid {
+  display: flex;
+  flex-direction: column;
+  min-width: 300px;
+  min-height: 300px;
+}
+
+.row {
+  display: flex;
+  flex: 1;
+}
+
+.field {
+  flex: 1;
+  border: 2px solid black;
+}
