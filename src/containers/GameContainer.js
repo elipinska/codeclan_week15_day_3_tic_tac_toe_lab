@@ -14,6 +14,7 @@ class GameContainer extends Component {
     this.swapPlayer = this.swapPlayer.bind(this)
     this.recordFieldClick = this.recordFieldClick.bind(this)
     this.resetGameContainer = this.resetGameContainer.bind(this)
+    this.checkForWinner = this.checkForWinner.bind(this)
   }
 
   swapPlayer() {
@@ -39,11 +40,35 @@ class GameContainer extends Component {
     this.setState( {
       clickedFields: newClickedFields
     })
+
+    this.checkForWinner(newClick)
+  }
+
+  checkForWinner(lastClick) {
+
+    const x = lastClick.position.x
+    const y = lastClick.position.y
+
+    const player = lastClick.player
+
+    const clickedFields = this.state.clickedFields
+
+
+    clickedFields.forEach((field) => {
+      if (field.player === player) {
+        if ((field.position.x <= x + 2 || field.position.x >= x -2) && field.position.y == y) {
+          console.log(`Match for player ` + player, field.position);
+        } else if ((field.position.y <= y + 2 || field.position.y >= y -2) && field.position.x == x) {
+          console.log("Match for player " + player, field.position);
+        } 
+      }
+    })
   }
 
   handleFieldClick(position) {
     this.recordFieldClick(position)
-    this.swapPlayer();
+    this.swapPlayer()
+
   }
 
   resetGameContainer() {
