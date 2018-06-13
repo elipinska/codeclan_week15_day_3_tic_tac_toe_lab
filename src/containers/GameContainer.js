@@ -31,10 +31,6 @@ class GameContainer extends Component {
     const newClick = {
       player: this.state.currentPlayer,
       fieldId: position.fieldId,
-      position: {
-        x: position.x,
-        y: position.y
-      }
     }
 
     const newClickedFields = this.state.clickedFields.concat([newClick])

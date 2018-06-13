@@ -14,8 +14,6 @@ class Field extends Component {
 
   handleFieldValue() {
     const position = {
-      x: this.props.x,
-      y: this.props.y,
       fieldId: this.props.fieldId,
       player: this.props.currentPlayer
     }
