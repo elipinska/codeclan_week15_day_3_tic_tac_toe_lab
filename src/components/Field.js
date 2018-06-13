@@ -1,22 +1,53 @@
-import React from 'react'
+import React, {Component} from 'react'
 
-const Field = (props) => {
 
-  const handleFieldValue = () => {
-    const position = {
-      x: props.x,
-      y: props.y
+class Field extends Component {
+
+  constructor(props) {
+    super(props)
+    this.state = {
+      player: ''
     }
 
-    props.onClick(position);
+    this.handleFieldValue = this.handleFieldValue.bind(this)
+    this.checkIfClicked = this.checkIfClicked.bind(this)
   }
 
-  return (
-    <div className="field" onClick={handleFieldValue}>
+  handleFieldValue() {
+    const position = {
+      x: this.props.x,
+      y: this.props.y,
+      fieldId: this.props.fieldId
+    }
 
-    </div>
+    this.props.onClick(position);
+  }
 
-  )
+  checkIfClicked() {
+
+    this.props.clickedFields.forEach((field) => {
+      if (field.fieldId == this.props.fieldId) {
+        this.setState({player: field.player})
+      }
+    })
+  }
+
+  componentWillMount() {
+    this.checkIfClicked()
+  }
+
+
+  render() {
+
+    return (
+      <div className={`field ${this.state.player}`} onClick={this.handleFieldValue}>
+
+      </div>
+
+    )
+  }
+
 }
+
 
 export default Field
