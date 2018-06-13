@@ -1,14 +1,18 @@
 .game-container {
+  display: flex;
+  height: 95vw;
   width: 95vw;
-  height: 95vh;
+  position: relative;
+  justify-content: center;
 }
 
 
 .grid {
   display: flex;
   flex-direction: column;
-  min-width: 300px;
-  min-height: 300px;
+  flex: 1;
+  max-width: 95vh;
+  max-height: 95vh;
 }
 
 .row {
@@ -19,4 +23,16 @@
 .field {
   flex: 1;
   border: 2px solid black;
+}
+
+.player1 {
+  background-image: url('cross.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.player2 {
+  background-image: url('circle.svg');
+  background-repeat: no-repeat;
+  background-position: center;
 }

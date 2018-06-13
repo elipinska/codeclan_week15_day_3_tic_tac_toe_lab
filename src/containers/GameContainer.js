@@ -25,7 +25,7 @@ class GameContainer extends Component {
 
   recordFieldClick(position) {
     const newClick = {
-      player: 'player-' + this.state.currentPlayer,
+      player: this.state.currentPlayer,
       fieldId: position.fieldId
     }
 
@@ -37,19 +37,18 @@ class GameContainer extends Component {
   }
 
   handleFieldClick(position) {
-    console.log(`Player ${this.state.currentPlayer} clicks`, position);
-    console.log(this.state.clickedFields);
-
-
     this.recordFieldClick(position)
     this.swapPlayer();
-
   }
 
   render() {
     return (
       <div className="game-container">
-        <Grid handleFieldClick={this.handleFieldClick} clickedFields={this.state.clickedFields}/>
+        <Grid
+          currentPlayer={this.state.currentPlayer}
+          handleFieldClick={this.handleFieldClick}
+          // clickedFields={this.state.clickedFields}
+        />
       </div>
 
     )

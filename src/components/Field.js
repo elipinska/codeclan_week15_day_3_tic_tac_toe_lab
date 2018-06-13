@@ -10,30 +10,18 @@ class Field extends Component {
     }
 
     this.handleFieldValue = this.handleFieldValue.bind(this)
-    this.checkIfClicked = this.checkIfClicked.bind(this)
   }
 
   handleFieldValue() {
     const position = {
       x: this.props.x,
       y: this.props.y,
-      fieldId: this.props.fieldId
+      fieldId: this.props.fieldId,
+      player: this.props.currentPlayer
     }
 
+    this.setState({player: 'player' + this.props.currentPlayer})
     this.props.onClick(position);
-  }
-
-  checkIfClicked() {
-
-    this.props.clickedFields.forEach((field) => {
-      if (field.fieldId == this.props.fieldId) {
-        this.setState({player: field.player})
-      }
-    })
-  }
-
-  componentWillMount() {
-    this.checkIfClicked()
   }
 
 
