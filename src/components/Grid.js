@@ -11,7 +11,7 @@ const Grid = (props) => {
           fieldId="1"
           x="1"
           y="1"
-          // clickedFields={props.clickedFields}
+          winner={props.winner}
           onClick={props.handleFieldClick}/>
 
         <Field
@@ -19,7 +19,7 @@ const Grid = (props) => {
           fieldId="2"
           x="2"
           y="1"
-          // clickedFields={props.clickedFields}
+          winner={props.winner}
           onClick={props.handleFieldClick}/>
 
         <Field
@@ -27,7 +27,7 @@ const Grid = (props) => {
           fieldId="3"
           x="3"
           y="1"
-          // clickedFields={props.clickedFields}
+          winner={props.winner}
           onClick={props.handleFieldClick}/>
       </div>
       <div className="row">
@@ -36,7 +36,7 @@ const Grid = (props) => {
           fieldId="4"
           x="1"
           y="2"
-          // clickedFields={props.clickedFields}
+          winner={props.winner}
           onClick={props.handleFieldClick}/>
 
         <Field
@@ -44,7 +44,7 @@ const Grid = (props) => {
           fieldId="5"
           x="2"
           y="2"
-          // clickedFields={props.clickedFields}
+          winner={props.winner}
           onClick={props.handleFieldClick}/>
 
         <Field
@@ -52,7 +52,7 @@ const Grid = (props) => {
           fieldId="6"
           x="3"
           y="2"
-          // clickedFields={props.clickedFields}
+          winner={props.winner}
           onClick={props.handleFieldClick}/>
       </div>
       <div className="row">
@@ -61,7 +61,7 @@ const Grid = (props) => {
           fieldId="7"
           x="1"
           y="3"
-          // clickedFields={props.clickedFields}
+          winner={props.winner}
           onClick={props.handleFieldClick}/>
 
         <Field
@@ -69,7 +69,7 @@ const Grid = (props) => {
           fieldId="8"
           x="2"
           y="3"
-          // clickedFields={props.clickedFields}
+          winner={props.winner}
           onClick={props.handleFieldClick}/>
 
         <Field
@@ -77,7 +77,7 @@ const Grid = (props) => {
           fieldId="9"
           x="3"
           y="3"
-          // clickedFields={props.clickedFields}
+          winner={props.winner}
           onClick={props.handleFieldClick}/>
       </div>
     </div>

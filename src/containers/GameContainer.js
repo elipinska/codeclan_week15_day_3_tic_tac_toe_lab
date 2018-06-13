@@ -79,15 +79,15 @@ class GameContainer extends Component {
         this.setState({winner: `Player ${this.state.currentPlayer} wins!`});
       }
     })
-
-
   }
 
 
-
   handleFieldClick(position) {
-    this.recordFieldClick(position)
-    this.swapPlayer()
+
+    if (this.state.winner === null) {
+      this.recordFieldClick(position)
+      this.swapPlayer()
+    }
 
   }
 
@@ -102,6 +102,7 @@ class GameContainer extends Component {
         <Grid
           currentPlayer={this.state.currentPlayer}
           handleFieldClick={this.handleFieldClick}
+          winner={this.state.winner}
         />
         <button onClick={this.resetGameContainer}>Restart</button>
         <h2>{this.state.winner}</h2>
