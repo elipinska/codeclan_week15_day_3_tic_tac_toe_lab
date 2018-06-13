@@ -8,14 +8,14 @@ class GameContainer extends Component {
     this.state = {
       currentPlayer: 1,
       clickedFields: [],
-      turn: 1
+      turn: 1,
+      winner: null
     }
 
     this.handleFieldClick = this.handleFieldClick.bind(this)
     this.swapPlayer = this.swapPlayer.bind(this)
     this.recordFieldClick = this.recordFieldClick.bind(this)
     this.resetGameContainer = this.resetGameContainer.bind(this)
-    this.checkForWinner = this.checkForWinner.bind(this)
     this.checkForWinner2 = this.checkForWinner2.bind(this)
   }
 
@@ -52,92 +52,37 @@ class GameContainer extends Component {
 
   checkForWinner2(lastClick) {
     const winningCombinations = [
-      [{x: 1, y: 1},
-       {x: 2, y: 1},
-       {x: 3, y: 1}
-      ],
-      [{x: 1, y: 2},
-       {x: 2, y: 2},
-       {x: 3, y: 2}
-     ],
-     [
-       {x: 1, y: 3},
-       {x: 2, y: 3},
-       {x: 3, y: 3}
-     ],
-      [{x: 1, y: 1},
-       {x: 1, y: 2},
-       {x: 1, y: 3}
-      ],
-      [{x: 2, y: 1},
-       {x: 2, y: 2},
-       {x: 2, y: 3}
-     ],
-     [
-       {x: 3, y: 1},
-       {x: 3, y: 2},
-       {x: 3, y: 3}
-     ],
-      [{x: 1, y: 1},
-       {x: 2, y: 2},
-       {x: 3, y: 3}
-     ],
-     [
-       {x: 3, y: 1},
-       {x: 2, y: 2},
-       {x: 1, y: 3}
-     ]
+      ["1", "4", "7"],
+      ["2", "5", "8"],
+      ["3", "6", "9"],
+      ["1", "2", "3"],
+      ["4", "5", "6"],
+      ["7", "8", "9"],
+      ["1", "5", "9"],
+      ["3", "5", "7"]
     ]
     const currentPlayerFields = this.state.clickedFields.filter((field) => {
       return field.player === this.state.currentPlayer
     })
 
     currentPlayerFields.push(lastClick)
+    const newCurrentPlayerFields = currentPlayerFields.map((field) => {
+      return field.fieldId
+    })
 
-    const winner = currentPlayerFields.every((field) => {
-      winningCombinations.forEach((winningCombo) => {
-        return winningCombo.every((winningField) => {
-          return (
-            winningField.x === field.position.x && winningField.y == field.position.y
-          )
-        })
+
+    winningCombinations.forEach((combination) => {
+      const winner = combination.every((winningField) => {
+        return newCurrentPlayerFields.includes(winningField)
       })
-    })
-
-    console.log(winner);
-
-  }
-
-  checkForWinner(lastClick) {
-
-    const x = lastClick.position.x
-    const y = lastClick.position.y
-
-    const player = lastClick.player
-
-    const clickedFields = this.state.clickedFields
-
-    let matchCounter = 0
-
-    clickedFields.forEach((field) => {
-
-      if (field.player === player) {
-        if ((field.position.x <= x + 2 || field.position.x >= x -2) && field.position.y == y) {
-          matchCounter++
-          console.log(matchCounter);
-          if (matchCounter >= 2) {
-            console.log('Game won by player' + player);
-          }
-        } else if ((field.position.y <= y + 2 || field.position.y >= y -2) && field.position.x == x) {
-          matchCounter++
-          console.log(matchCounter);
-          if (matchCounter >= 2) {
-            console.log('Game won by player' + player);
-        }
+      if (winner) {
+        this.setState({winner: `Player ${this.state.currentPlayer} wins!`});
       }
-    }
     })
+
+
   }
+
 
 
   handleFieldClick(position) {
@@ -157,9 +102,9 @@ class GameContainer extends Component {
         <Grid
           currentPlayer={this.state.currentPlayer}
           handleFieldClick={this.handleFieldClick}
-          // clickedFields={this.state.clickedFields}
         />
         <button onClick={this.resetGameContainer}>Restart</button>
+        <h2>{this.state.winner}</h2>
       </div>
 
     )
