@@ -13,6 +13,7 @@ class GameContainer extends Component {
     this.handleFieldClick = this.handleFieldClick.bind(this)
     this.swapPlayer = this.swapPlayer.bind(this)
     this.recordFieldClick = this.recordFieldClick.bind(this)
+    this.resetGameContainer = this.resetGameContainer.bind(this)
   }
 
   swapPlayer() {
@@ -26,7 +27,11 @@ class GameContainer extends Component {
   recordFieldClick(position) {
     const newClick = {
       player: this.state.currentPlayer,
-      fieldId: position.fieldId
+      fieldId: position.fieldId,
+      position: {
+        x: position.x,
+        y: position.y
+      }
     }
 
     const newClickedFields = this.state.clickedFields.concat([newClick])
@@ -41,14 +46,20 @@ class GameContainer extends Component {
     this.swapPlayer();
   }
 
+  resetGameContainer() {
+    window.location.reload()
+  }
+
   render() {
     return (
       <div className="game-container">
+        <h1>Player {this.state.currentPlayer}'s turn</h1>
         <Grid
           currentPlayer={this.state.currentPlayer}
           handleFieldClick={this.handleFieldClick}
           // clickedFields={this.state.clickedFields}
         />
+        <button onClick={this.resetGameContainer}>Restart</button>
       </div>
 
     )

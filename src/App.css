@@ -4,6 +4,7 @@
   width: 95vw;
   position: relative;
   justify-content: center;
+  flex-direction: column;
 }
 
 
@@ -35,4 +36,8 @@
   background-image: url('circle.svg');
   background-repeat: no-repeat;
   background-position: center;
+}
+
+h1 {
+  text-align: center;
 }

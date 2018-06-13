@@ -20,8 +20,10 @@ class Field extends Component {
       player: this.props.currentPlayer
     }
 
-    this.setState({player: 'player' + this.props.currentPlayer})
-    this.props.onClick(position);
+    if (this.state.player === '') {
+      this.setState({player: 'player' + this.props.currentPlayer})
+      this.props.onClick(position);
+    }
   }
 
 
